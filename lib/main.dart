@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:inwentaryzacja/pages/baarcode_scanner.dart';
 import 'package:inwentaryzacja/pages/home_page.dart';
+import 'package:inwentaryzacja/services/storage.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+     // home: HomePage(storage: Storage(),),
+    home: BarCodeScanner(),
     );
   }
 }

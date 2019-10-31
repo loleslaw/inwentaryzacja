@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   path_provider:
+  flutter_barcode_scanner:
 
 dev_dependencies:
   flutter_test:
