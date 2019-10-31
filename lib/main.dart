@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     // home: HomePage(storage: Storage(),),
-    home: BarCodeScanner(),
+      home: HomePage(storage: Storage(),),
+    //home: BarCodeScanner(),
     );
   }
 }
