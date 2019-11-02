@@ -27,6 +27,7 @@ dependencies:
   path_provider:
   flutter_barcode_scanner:
   file_picker:
+  sqflite:
 
 dev_dependencies:
   flutter_test:

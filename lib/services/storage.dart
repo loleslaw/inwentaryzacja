@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:convert' show utf8;
 
@@ -26,15 +27,24 @@ class Storage {
   }
 
   Future<String> readFile({String filePath} ) async {
+
+/*
+    var file = new File(filePath);
+    file.readAsLines(encoding: latin1).then((lines) {
+        print(lines);
+    }).catchError(print);
+*/
+    
     try {
       final file =  File(filePath);
-      String body = await ( file.readAsString());
+      List<String> body = await  file.readAsLines(encoding: latin1);
       print(body);
-      return body;
+      return 'ala';
     } catch (e) {
-      print('ERROR: |${e.toString()}');
+      print('ERROR: ${e.toString()}');
       return e.toString();
     }
+    
   }
 
   Future<File> writeData(String data) async {

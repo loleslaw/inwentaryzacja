@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
 //filePath = await FilePicker.getFilePath(type: FileType.ANY); // will let you pick one file path, from all extensions
 _filePath = await FilePicker.getFilePath(type: FileType.CUSTOM, fileExtension: 'csv');
 final file = await widget.storage.readFile(filePath: _filePath);
-
+  
 setState(() {
   filePath = _filePath;
 });
