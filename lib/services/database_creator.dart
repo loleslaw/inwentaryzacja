@@ -6,13 +6,14 @@ import 'dart:io';
 Database db;
 
 class DatabaseCreator {
-  static const tableName = 'data';
+  static const tableName = 'itemsdata';
   static const id = 'id';
   static const name = 'name';
   static const barcode = 'barcode';
   static const onStock = 'onstock';
   static const counted = 'counted';
   static const scanned = 'scanned';
+  static const isDeleted = 'isDeleted';
 
   static void databaseLog(String functionName, String sql, [List<Map<String, dynamic>> selectQueryResult, int insetAndUpdateQueryResult]) 
   {
@@ -27,14 +28,15 @@ class DatabaseCreator {
 
   Future<void>createTable(Database db) async {
     final todoSql = '''
-      CRATE TABLE $tableName
+      CREATE TABLE $tableName
       (
         $id INTEGER PRIMARY KEY,
         $name TEXT, 
         $barcode INTEGER,
         $onStock INTEGER,
         $counted INTEGER,
-        $onStock BIT NOT NULL
+        $scanned BIT NOT NULL,
+        $isDeleted BIT NOT NULL
       )
     ''';
     await db.execute(todoSql);
