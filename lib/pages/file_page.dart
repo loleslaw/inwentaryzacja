@@ -1,17 +1,17 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:inwentaryzacja/services/storage.dart';
+import 'package:inwentaryzacja/services/file_storage.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, @required this.storage}) : super(key: key);
+class FileLoadPage extends StatefulWidget {
+  FileLoadPage({Key key, @required this.storage}) : super(key: key);
 
   final Storage storage;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _FileLoadPageState createState() => _FileLoadPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _FileLoadPageState extends State<FileLoadPage> {
   String filePath='No file';
   @override
   Widget build(BuildContext context) {

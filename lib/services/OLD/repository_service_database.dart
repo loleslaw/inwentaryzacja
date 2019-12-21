@@ -1,3 +1,5 @@
+/*
+
 import 'package:inwentaryzacja/models/item_class.dart';
 
 import 'database_creator.dart';
@@ -72,3 +74,5 @@ class RepositoryService {
     return count;
   }
 }
+
+*/
