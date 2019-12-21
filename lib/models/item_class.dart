@@ -1,3 +1,4 @@
+/*
 import 'package:inwentaryzacja/services/database_creator.dart';
 
 class Item {
@@ -22,3 +23,4 @@ class Item {
   }
 
 }
+*/
