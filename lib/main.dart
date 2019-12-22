@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inwentaryzacja/pages/10_scanner_page.dart';
 import 'package:inwentaryzacja/pages/20_data_page.dart';
-import 'package:inwentaryzacja/pages/30_file_page.dart';
+import 'package:inwentaryzacja/pages/30_file_page/30_file_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
