@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/file_bloc.dart';
+import 'bloc/file_event.dart';
+import 'bloc/file_state.dart';
 
 class FilePage extends StatelessWidget {
-  const FilePage({Key key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
+   // final FileBloc fileBloc = BlocProvider.of<FileBloc>(context);
+   final FileBloc fileBloc = FileBloc();
     return Scaffold(
-      body: Center(child: Text('File page')),
+      body: BlocBuilder<FileBloc, FileState>(
+        bloc: fileBloc,
+
+        builder: (context, fileState) {
+          return Center(
+            child: Text('File page'),
+          );
+        }
+      ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: _loaDataFrpmFile,
+            onPressed: () {
+              print('load data from file event');
+              fileBloc.add(LoadFile());
+            },
             backgroundColor: Colors.red,
             child: Icon(Icons.file_download),
           ),
@@ -26,11 +43,9 @@ class FilePage extends StatelessWidget {
     );
   }
 
-  _loaDataFrpmFile() {
-    print('load data from file');
-  }
-
   _storeDataToFile() {
     print('store data to file');
   }
+
+
 }
