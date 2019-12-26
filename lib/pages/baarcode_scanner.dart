@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+//import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class BarCodeScanner extends StatefulWidget {
   BarCodeScanner({Key key}) : super(key: key);
@@ -25,10 +25,10 @@ class _BarCodeScannerState extends State<BarCodeScanner> {
     );
   }
   Future _scanCode() async {
-    _cnt = await FlutterBarcodeScanner.scanBarcode('#004297', 'Cancel', true, ScanMode.BARCODE);
+   // _cnt = await FlutterBarcodeScanner.scanBarcode('#004297', 'Cancel', true, ScanMode.BARCODE);
 
     setState(() {
-      scannedCode = _cnt;
+     // scannedCode = _cnt;
     });
   }
 }

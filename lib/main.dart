@@ -8,8 +8,13 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,41 +23,74 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: myTabController(),
+     home: MyTabbedPage(),
     );
   }
 }
 
-DefaultTabController myTabController() {
-  return DefaultTabController(
-    length: 3,
-    child: Scaffold(
-      appBar: myAppBar(),
-      body: TabBarView(children: <Widget>[
+
+
+
+class MyTabbedPage extends StatefulWidget {
+  MyTabbedPage({Key key}) : super(key: key);
+
+  @override
+  _MyTabbedPageState createState() => _MyTabbedPageState();
+}
+
+class _MyTabbedPageState extends State<MyTabbedPage> with SingleTickerProviderStateMixin {
+
+  TabController _tabController;
+
+  @override
+  void initState() { 
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+  
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _myAppBar(),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
         ScannerPage(),
         DataPage(),
         FilePage()
       ],),
+    );
+  }
+
+  Widget _myAppBar() {
+  return AppBar(
+    title: Text('Inwentaryzacja'),
+    centerTitle: true,
+    actions: <Widget>[
+     // _tabController.index==1 
+     // ? 
+      IconButton(icon: Icon(Icons.more_vert),
+      onPressed: () {
+        print('local menu na ${_tabController.index}');
+      },)
+     // : SizedBox(height: 0,)
+    ],
+    bottom: TabBar(
+      controller: _tabController, 
+      tabs: <Widget>[
+        Tab(icon: Icon(Icons.scanner),),
+        Tab(icon: Icon(Icons.data_usage),),
+        Tab(icon: Icon(Icons.file_download),),
+      ],
     ),
   );
 }
 
-myAppBar() {
-  return AppBar(
-    title: Text('Inwentaryzacja'),
-    centerTitle: true,
-    bottom: TabBar(
-      tabs: <Widget>[
-        Tab(
-          icon: Icon(Icons.scanner),
-        ),
-        Tab(
-          icon: Icon(Icons.data_usage),
-        ),
-        Tab(
-          icon: Icon(Icons.file_download),
-        )
-      ],
-    ),
-  );
+
 }

@@ -27,6 +27,6 @@ class FileBloc extends Bloc<FileEvent, FileState> {
   }
   Future _delay({String task}) async {
     print('starting $task');
-    Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(seconds: 3));
   }
 }

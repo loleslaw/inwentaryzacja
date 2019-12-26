@@ -16,8 +16,22 @@ class FilePage extends StatelessWidget {
         bloc: fileBloc,
 
         builder: (context, fileState) {
-          return Center(
-            child: Text('File page'),
+          return BlocBuilder<FileBloc, FileState>(
+            bloc: fileBloc,
+            builder: (context, state) {
+              if (state is InitialFileState) {
+                return Center(child: Text('Initial state'),);
+              } else if (state is FileIsLoading || state is FileIsSaving) {
+                return Center(child: CircularProgressIndicator(),);
+              } else if (state is FileLoaded) {
+                return Center(child: Text('Plik zaladowany'),);
+              } else if (state is FileSaved) {
+                return Center(child: Text('Plik zapisany'),);
+              } else {
+                return Center(child: Text('Inny state'),);
+              }
+            
+            }
           );
         }
       ),
@@ -28,13 +42,17 @@ class FilePage extends StatelessWidget {
             onPressed: () {
               print('load data from file event');
               fileBloc.add(LoadFile());
+              
             },
             backgroundColor: Colors.red,
             child: Icon(Icons.file_download),
           ),
           SizedBox(width: 20,),
           FloatingActionButton(
-            onPressed: _storeDataToFile,
+            onPressed: () {
+              print('store data to file');
+              fileBloc.add((SaveFile()));
+            },
             child: Icon(Icons.file_upload),),
 
         ],
@@ -43,6 +61,10 @@ class FilePage extends StatelessWidget {
     );
   }
 
+  _loadDataFromFile() {
+    print('Loading data from file');
+    
+  }
   _storeDataToFile() {
     print('store data to file');
   }
